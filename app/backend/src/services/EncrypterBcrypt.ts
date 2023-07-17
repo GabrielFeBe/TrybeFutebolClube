@@ -3,15 +3,15 @@ import Encrypter from '../Interfaces/Encrypter';
 
 class EncrypterBcrypt implements Encrypter {
   private bcrypt = bcrypt;
-  static saltRounds = process.env.BCRYPT_SALT_ROUNDS || 10;
+  static saltRounds = 10;
 
   async encrypt(password: string): Promise<string> {
-    const hash = await this.bcrypt.hash(password, EncrypterBcrypt.saltRounds);
+    const hash = this.bcrypt.hash(password, EncrypterBcrypt.saltRounds);
     return hash;
   }
 
   async compare(password: string, hash: string): Promise<boolean> {
-    const isValid = await this.bcrypt.compare(password, hash);
+    const isValid = this.bcrypt.compare(password, hash);
     return isValid;
   }
 }

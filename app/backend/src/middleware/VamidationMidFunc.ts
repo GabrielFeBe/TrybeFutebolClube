@@ -7,5 +7,9 @@ export default class ValidateMidFunctions {
     if (keys) {
       throw new BadRequest('All fields must be filled');
     }
+    const values = Object.values(post);
+    if (values.some((k) => k.length < 1)) {
+      throw new BadRequest('All fields must be filled');
+    }
   }
 }

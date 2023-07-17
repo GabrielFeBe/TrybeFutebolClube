@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { TokenGenerator, userDefault } from '../Interfaces/IJwt';
 
-const jwtSecret = process.env.JWT_SECRET || 'segurodms';
+const jwtSecret = process.env.JWT_SECRET || 'jwt_secret';
 
 interface JwtPayload {
   id: number;
@@ -12,7 +12,7 @@ interface JwtPayload {
 
 export default class TokenGeneratorJwt implements TokenGenerator {
   private jwt = jwt;
-  static jwtExpiration = process.env.JWT_EXPIRATION || (60 * 60 * 24 * 7);
+  static jwtExpiration = (60 * 60 * 24 * 7);
   generate(user: userDefault): string {
     const token = this.jwt.sign(
       { id: user.id, email: user.email },
