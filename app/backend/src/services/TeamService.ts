@@ -1,4 +1,4 @@
-import Teams from '../database/models/teams.model';
+import Teams from '../database/models/Teams.model';
 
 export default class TeamService {
   constructor(private Model = Teams) {}

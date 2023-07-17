@@ -7,7 +7,7 @@ import {
   ForeignKey,
 } from 'sequelize';
 import db from '.';
-import Teams from './teams.model';
+import Teams from './Teams.model';
 
 const sequelize = db;
 

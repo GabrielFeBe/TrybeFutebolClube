@@ -1,7 +1,3 @@
-export default interface IUser {
+export default interface IExample {
   id: number,
-  username:string,
-  role:string,
-  email:string,
-  password:string
 }
