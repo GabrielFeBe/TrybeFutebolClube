@@ -5,6 +5,8 @@ export default class ErrorMiddleware {
   static mapCodes:Record<string, number> = {
     unauthorized: 401,
     badRequest: 400,
+    unprocessableEntity: 422,
+    notFound: 404,
 
   };
 

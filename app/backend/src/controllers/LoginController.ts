@@ -3,6 +3,7 @@ import User from '../class/User';
 import LoginService from '../services/LoginService';
 
 class LoginController {
+  private not = '_';
   constructor(private Service:LoginService) {
 
   }
@@ -16,7 +17,8 @@ class LoginController {
 
   async validatingToken(req:Request, res : Response) {
     const { authorization } = req.headers;
-    const role = await this.Service.validatingToken(authorization as string);
+    console.log(this.not);
+    const role = authorization;
 
     return res.status(200).json({ role });
   }

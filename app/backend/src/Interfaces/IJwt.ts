@@ -14,5 +14,5 @@ export interface JwtPayload {
 
 export interface TokenGenerator {
   generate(user: userDefault): string
-  verifyToken(token:string): Promise<JwtPayload>
+  verifyToken(token:string): JwtPayload
 }

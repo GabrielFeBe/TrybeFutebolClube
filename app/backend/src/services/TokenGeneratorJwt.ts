@@ -17,7 +17,7 @@ export default class TokenGeneratorJwt implements TokenGenerator {
     return token;
   }
 
-  async verifyToken(token: string) {
+  verifyToken(token: string) {
     try {
       const data = this.jwt.verify(token, jwtSecret) as JwtPayload;
       return data;
