@@ -13,5 +13,12 @@ class LoginController {
     const token = await this.Service.longinUser(userClass);
     return res.status(200).json({ token });
   }
+
+  async validatingToken(req:Request, res : Response) {
+    const { authorization } = req.headers;
+    const role = await this.Service.validatingToken(authorization as string);
+
+    return res.status(200).json({ role });
+  }
 }
 export default LoginController;

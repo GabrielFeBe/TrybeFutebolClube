@@ -9,7 +9,10 @@ const router = Router();
 
 router.get('/', async (req:Request, res : Response) =>
   teamControleer.findAllTeam(req, res));
-router.get('/:id', (async (req: Request, res: Response) =>
-  teamControleer.findTeamById(req, res)));
+router.get(
+  '/:id', (
+    async (req: Request, res: Response) =>
+      teamControleer.findTeamById(req, res)),
+);
 
 export default router;

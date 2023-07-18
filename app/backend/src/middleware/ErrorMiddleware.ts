@@ -13,6 +13,6 @@ export default class ErrorMiddleware {
     if (err instanceof ErrorExpress) {
       return res.status(statusCode).json({ message: err.message });
     }
-    return res.status(500).json();
+    return res.status(500).json({ message: err.message });
   }
 }

@@ -26,6 +26,11 @@ class LoginService {
     const token = this.tokenGenerator.generate(response);
     return token;
   }
+
+  async validatingToken(token:string) {
+    const returnValidation = await this.tokenGenerator.verifyToken(token);
+    return returnValidation.role;
+  }
 }
 
 export default LoginService;
