@@ -15,12 +15,13 @@ class Validate {
     next();
   }
 
-  static validateToken(req: Request, res: Response, next: NextFunction) {
+  static async validateToken(req: Request, res: Response, next: NextFunction) {
     const { authorization } = req.headers;
     if (!authorization) throw new Unauthorized('Token not found');
     const [__, token] = authorization.split(' ');
     console.log(__);
-    const data = Validate.tokenGenerator.verifyToken(token);
+    const data = await Validate.tokenGenerator.verifyToken(token);
+    console.log(data);
     req.headers.authorization = data.role;
 
     next();

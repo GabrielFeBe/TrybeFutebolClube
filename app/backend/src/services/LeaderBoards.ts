@@ -28,17 +28,7 @@ export default class LeaderBoardService {
     const matches = await Matches.findAll({ where: { inProgress: false } });
     const arrangedTeamHome = LeaderBoardRS.reducerFunc(teams, matches, 'homeTeamId');
     const arrangedTeamsAway = LeaderBoardRS.reducerFunc(teams, matches, 'awayTeamId');
-    const arrangedTeamsAll = arrangedTeamHome.map((homeT, i) => {
-      const newObj = homeT;
-      newObj.goalsFavor += arrangedTeamsAway[i].goalsFavor;
-      newObj.goalsOwn += arrangedTeamsAway[i].goalsOwn;
-      newObj.totalDraws += arrangedTeamsAway[i].totalDraws;
-      newObj.totalGames += arrangedTeamsAway[i].totalGames;
-      newObj.totalLosses += arrangedTeamsAway[i].totalLosses;
-      newObj.totalPoints += arrangedTeamsAway[i].totalPoints;
-      newObj.totalVictories += arrangedTeamsAway[i].totalVictories;
-      return newObj;
-    });
+    const arrangedTeamsAll = LeaderBoardRS.awayAndHomeTeams(arrangedTeamHome, arrangedTeamsAway);
     return arrangedTeamsAll;
   }
 }

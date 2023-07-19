@@ -15,6 +15,8 @@ const defaultObj = {
 
 type GameFilter = 'homeTeamId' | 'awayTeamId';
 
+type LeaderBoard = Omit<ILeaderBoard, 'efficiency' | 'goalsBalance'>[];
+
 export default class LeaderBoardRS {
   static sortingStatus(array: ILeaderBoard[]) {
     const sortingStatusArr = array.sort((a, b) => {
@@ -54,13 +56,27 @@ export default class LeaderBoardRS {
     });
   }
 
-  static addingEff(arrO:Omit<ILeaderBoard, 'efficiency' | 'goalsBalance'>[]) {
+  static addingEff(arrO:LeaderBoard) {
     return arrO.map((obj) => {
       const status = { ...obj,
         goalsBalance: obj.goalsFavor - obj.goalsOwn,
         efficiency: ((obj.totalPoints / (obj.totalGames * 3)) * 100).toFixed(2),
       };
       return status;
+    });
+  }
+
+  static awayAndHomeTeams(homeTeam:LeaderBoard, awayTeam:LeaderBoard) {
+    return homeTeam.map((homeT, i) => {
+      const newObj = homeT;
+      newObj.goalsFavor += awayTeam[i].goalsFavor;
+      newObj.goalsOwn += awayTeam[i].goalsOwn;
+      newObj.totalDraws += awayTeam[i].totalDraws;
+      newObj.totalGames += awayTeam[i].totalGames;
+      newObj.totalLosses += awayTeam[i].totalLosses;
+      newObj.totalPoints += awayTeam[i].totalPoints;
+      newObj.totalVictories += awayTeam[i].totalVictories;
+      return newObj;
     });
   }
 }
