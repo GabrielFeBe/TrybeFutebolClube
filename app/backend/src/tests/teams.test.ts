@@ -1,11 +1,9 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-import * as jwt from 'jsonwebtoken';
 // @ts-ignore
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-// import Example from '../database/models/ExampleModel';
 
 import Teams from '../database/models/Teams.model';
 import { teams } from './mock/teamsMock';
@@ -20,26 +18,25 @@ describe('Login Routes Test', () => {
   afterEach(sinon.restore)
 
 
-  it('login test with valid infos', async () => {
-    const userMocked = Teams.build(teams[0])
-    sinon.stub(Teams, 'findOne').resolves(userMocked)
-    const response = await chai.request(app).post('/login').send({
-      email: 'admin@admin.com',
-      password: 'secret_admin'
-    })
+  it('testing get team by id', async () => {
+    const teamMocked = Teams.build(teams[0])
+    sinon.stub(Teams, 'findByPk').resolves(teamMocked)
+    const response = await chai.request(app).get('/teams/1').send()
 
     expect(response.status).to.be.eq(200);
+    expect(response.body).to.deep.equal(teams[0]);
   });
 
 
-  it('login test with invalid email', async () => {
+  it('get all teams', async () => {
+    const teamMocked = Teams.bulkBuild(teams)
+    sinon.stub(Teams, 'findAll').resolves(teamMocked)
+    const response = await chai.request(app).get('/teams').send(
+    )
 
-    const response = await chai.request(app).post('/login').send({
-      email: 'admin.com',
-      password: 'secret_admin'
-    })
+    expect(response.status).to.be.eq(200);
+    expect(response.body).to.deep.equal(teams);
 
-    expect(response.status).to.be.eq(401);
   });
 
 

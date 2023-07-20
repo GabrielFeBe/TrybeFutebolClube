@@ -21,7 +21,6 @@ class Validate {
     const [__, token] = authorization.split(' ');
     console.log(__);
     const data = await Validate.tokenGenerator.verifyToken(token);
-    console.log(data);
     req.headers.authorization = data.role;
 
     next();

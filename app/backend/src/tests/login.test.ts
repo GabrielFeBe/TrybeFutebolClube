@@ -5,7 +5,6 @@ import * as jwt from 'jsonwebtoken';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-// import Example from '../database/models/ExampleModel';
 
 import User from '../database/models/User.model';
 import { userMock } from './mock/userMock';
@@ -56,7 +55,6 @@ describe('Login Routes Test', () => {
   it('login get role test', async () => {
     sinon.stub(jwt, 'verify').resolves(userMock)
     const response = await chai.request(app).get('/login/role').set(headers).send({})
-    // console.log(response)
 
     expect(response.status).to.be.eq(200);
     expect(response.body.role).to.be.eq(userMock.role);
