@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import LeaderBoardRS from '../services/LeaderBoardRS';
 import LeaderBoardService from '../services/LeaderBoards';
 
 export default class LeaderBoardController {
@@ -11,24 +10,18 @@ export default class LeaderBoardController {
   async leaderBoardHome(req:Request, res : Response) {
     const sucess = await this.service.leaderBoardHome();
 
-    const newObj = LeaderBoardRS.addingEff(sucess);
-    const sortingStatusArr = LeaderBoardRS.sortingStatus(newObj);
-    return res.status(200).json(sortingStatusArr);
+    return res.status(200).json(sucess);
   }
 
   async leaderBoardAway(req:Request, res : Response) {
     const sucess = await this.service.leaderBoardAway();
 
-    const newObj = LeaderBoardRS.addingEff(sucess);
-    const sortingStatusArr = LeaderBoardRS.sortingStatus(newObj);
-    return res.status(200).json(sortingStatusArr);
+    return res.status(200).json(sucess);
   }
 
   async leaderBoardAll(req:Request, res : Response) {
     const sucess = await this.service.leaderBoardAll();
 
-    const newObj = LeaderBoardRS.addingEff(sucess);
-    const sortingStatusArr = LeaderBoardRS.sortingStatus(newObj);
-    return res.status(200).json(sortingStatusArr);
+    return res.status(200).json(sucess);
   }
 }
