@@ -14,7 +14,7 @@ Certifique-se de ter as seguintes ferramentas instaladas antes de começar:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Docker](https://www.docker.com/)
 
-## Scripts Disponíveis
+## Scripts Disponíveis no Projeto backend
 
 No diretório do projeto, você pode executar os seguintes scripts:
 
